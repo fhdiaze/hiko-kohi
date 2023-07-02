@@ -2,10 +2,13 @@ use chrono::{DateTime, Utc};
 
 use crate::domain::types::icp_number::IcpNumber;
 
-#[derive(Debug)]
+use super::read::Read;
+
+#[derive(Debug, PartialEq, Eq)]
 pub struct Icp {
-  number: IcpNumber,
-  created_at: DateTime<Utc>,
+  pub number: IcpNumber,
+  pub created_at: DateTime<Utc>,
+  pub reads: Vec<Read>,
 }
 
 impl Icp {
@@ -13,6 +16,7 @@ impl Icp {
     Icp {
       number: IcpNumber::new(number),
       created_at: Utc::now(),
+      reads: Vec::new(),
     }
   }
 }
